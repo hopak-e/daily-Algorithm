@@ -1,5 +1,4 @@
 function solution(t, p) {
-    var result;
     var count = 0;
     var slice = p.length;
     for(let i=0; i<=t.length-slice; i++){
