@@ -11,7 +11,7 @@ const stack = [];
 let cur = 1;
 
 for (let i = 0; i < N; i++) {
-  const num = input.shift();
+  const num = input[i];
   while (cur <= num) {
     stack.push(cur++);
     answer += "+ ";
