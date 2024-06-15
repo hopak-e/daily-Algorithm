@@ -1,28 +1,26 @@
-const input = require("fs")
+let input = require("fs")
   .readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt")
   .toString()
   .trim()
   .split("\n")
   .map(Number);
+const N = input[0];
 
-const N = input.shift();
-let answer = "";
-const stack = [];
 let cur = 1;
-
-for (let i = 0; i < N; i++) {
+const stack = [];
+let result = "YES";
+const answer = [];
+for (let i = 1; i <= N; i++) {
   const num = input[i];
   while (cur <= num) {
     stack.push(cur++);
-    answer += "+ ";
+    answer.push("+");
   }
-
   const poped = stack.pop();
   if (poped !== num) {
-    answer = "NO";
+    result = "NO";
     break;
   }
-  answer += "- ";
+  answer.push("-");
 }
-
-console.log(answer.split(" ").join("\n"));
+console.log(result === "YES" ? answer.join("\n") : result);
