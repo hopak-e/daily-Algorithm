@@ -1,14 +1,13 @@
-const input = require("fs")
+let input = require("fs")
   .readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt")
   .toString()
   .trim()
   .split("\n");
+
 const N = Number(input[0]);
 const arr = input[1].split(" ").map(Number);
-const answer = Array(N).fill(-1);
 const stack = [];
 const map = {};
-
 for (let i = 0; i < N; i++) {
   if (map[arr[i]]) {
     map[arr[i]]++;
@@ -19,10 +18,12 @@ for (let i = 0; i < N; i++) {
 
 for (let i = 0; i < N; i++) {
   while (stack.length > 0 && map[arr[stack[stack.length - 1]]] < map[arr[i]]) {
-    answer[stack.pop()] = arr[i];
+    arr[stack.pop()] = arr[i];
   }
-
   stack.push(i);
 }
 
-console.log(answer.join(" ").trim());
+while (stack.length) {
+  arr[stack.pop()] = -1;
+}
+console.log(arr.join(" "));
