@@ -1,26 +1,23 @@
-const input = require("fs")
+let input = require("fs")
   .readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt")
   .toString()
   .trim()
   .split("\n");
 
-const N = Number(input.shift());
-const answer = [];
+const N = Number(input[0]);
 
-const gcd = (a, b) => {
+const calGCD = (a, b) => {
   if (b === 0) {
     return a;
-  } else {
-    return gcd(b, a % b);
   }
+  return calGCD(b, a % b);
 };
-
-const lcm = (a, b) => {
-  return (a * b) / gcd(a, b);
-};
-
-for (let i = 0; i < N; i++) {
-  const [left, right] = input[i].split(" ").map(Number);
-  answer.push(lcm(left, right));
+const answer = [];
+for (let i = 1; i <= N; i++) {
+  const [a, b] = input[i].split(" ").map(Number);
+  const gcd = calGCD(a, b);
+  const lcd = (a * b) / gcd;
+  answer.push(lcd);
 }
+
 console.log(answer.join("\n"));
