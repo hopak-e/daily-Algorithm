@@ -14,8 +14,9 @@ const bfs = (start) => {
   const queue = [start];
   visited[start] = true;
   path[start] = 1;
-  while (queue.length) {
-    const cur = queue.shift();
+  let front = 0;
+  while (queue.length > front) {
+    const cur = queue[front++];
     for (let next of [cur - 1, cur + 1, cur * 2]) {
       if (cur < 0 || cur > 100001) continue;
 
