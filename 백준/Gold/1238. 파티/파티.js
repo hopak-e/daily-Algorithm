@@ -17,9 +17,9 @@ const dijkstra = (start) => {
   const distance = Array.from({ length: N + 1 }).fill(Infinity);
   distance[start] = 0;
   const pq = [[0, start]];
-
-  while (pq.length > 0) {
-    const [curDist, curNode] = pq.shift();
+  let front = 0;
+  while (pq.length > front) {
+    const [curDist, curNode] = pq[front++];
 
     if (curDist > distance[curNode]) continue;
 
