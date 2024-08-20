@@ -5,10 +5,10 @@ let input = require("fs")
   .split("\n");
 
 const N = Number(input[0]);
-const dist = input[1].split(" ").map(Number);
-const price = input[2].split(" ").map(Number);
+const dist = input[1].split(" ").map(BigInt);
+const price = input[2].split(" ").map(BigInt);
 
-let cost = 0;
+let cost = BigInt(0);
 let min = price[0];
 
 for (let i = 0; i < N - 1; i++) {
@@ -18,4 +18,4 @@ for (let i = 0; i < N - 1; i++) {
   cost += min * dist[i];
 }
 
-console.log(cost);
+console.log(cost.toString());
